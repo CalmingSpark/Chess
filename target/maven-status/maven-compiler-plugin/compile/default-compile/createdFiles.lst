@@ -1,4 +1,10 @@
+Queen.class
+Shapes.class
+Bishop.class
 ChessFrame.class
 Floors.class
-Shapes.class
+King.class
+Castle.class
+Pawn.class
+Knight.class
 ChessFrame$1.class

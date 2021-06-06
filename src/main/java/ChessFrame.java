@@ -1,4 +1,9 @@
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
 
 
 /*
@@ -57,8 +62,13 @@ public class ChessFrame extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                new Floors().initUI();
+                try {
+                    new Floors().initUI();
+                } catch (IOException ex) {
+                    Logger.getLogger(ChessFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
