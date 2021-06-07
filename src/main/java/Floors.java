@@ -2,10 +2,7 @@
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
-import java.awt.Image;
 import java.io.IOException;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 //import java.awt.Container;
 
 import javax.swing.JButton;
@@ -113,6 +110,18 @@ public class Floors extends javax.swing.JFrame{
         AddFigure(BlackQueen);
         Shapes WhiteQueen = new Queen(false, 7, 3);
         AddFigure(WhiteQueen);
+        
+        Shapes[] blackPawns = new Shapes[8];
+        for(int i = 0; i < 8; i++) {
+            blackPawns[i] = new Pawn(true, 1, i);
+            AddFigure(blackPawns[i]);
+        }
+        
+        Shapes[] whitePawns = new Shapes[8];
+        for(int i = 0; i < 8; i++) {
+            whitePawns[i] = new Pawn(false, 6, i);
+            AddFigure(whitePawns[i]);
+        }
          
         frame.setExtendedState(Floors.MAXIMIZED_BOTH);
         frame.getContentPane().setBackground(new java.awt.Color(83,28,41));
