@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
  *
  * @author Zver
  */
-public class Queen extends Shapes {
+public class Queen extends Shape {
     private final ImageIcon blackIcon = new ImageIcon("resources/BlackQueen.png");
     private final ImageIcon whiteIcon = new ImageIcon("resources/WhiteQueen.png");
 

@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
  *
  * @author Zver
  */
-public class Bishop extends Shapes {
+public class Bishop extends Shape {
     private final ImageIcon blackIcon = new ImageIcon("resources/BlackBishop.png");
     private final ImageIcon whiteIcon = new ImageIcon("resources/WhiteBishop.png");
 

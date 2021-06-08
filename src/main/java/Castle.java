@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
  *
  * @author Zver
  */
-public class Castle extends Shapes {
+public class Castle extends Shape {
     private final ImageIcon blackIcon = new ImageIcon("resources/BlackCastle.png");
     private final ImageIcon whiteIcon = new ImageIcon("resources/WhiteCastle.png");
 

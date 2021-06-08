@@ -2,6 +2,8 @@
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 //import java.awt.Container;
 
@@ -20,10 +22,12 @@ import javax.swing.JLabel;
  *
  * @author Zver
  */
+
 public class Floors extends javax.swing.JFrame{
     JPanel jpCell = new JPanel();
-    private JButton[][] matrixFloor;
-    private JButton jbCell;
+    GridLayout layout = new GridLayout(8, 8, 0, 0);
+    private JReferencingButton[][] matrixFloor;
+    private JReferencingButton jbCell;
     private JLabel leftSide, rightSide, topSide, bottomSide;
     
     void initUI() throws IOException {
@@ -47,15 +51,16 @@ public class Floors extends javax.swing.JFrame{
         frame.add(topSide, BorderLayout.NORTH);
         frame.add(bottomSide, BorderLayout.SOUTH);
         
-        GridLayout layout = new GridLayout(8, 8, 0, 0);
         jpCell.setLayout(layout);
                 
-        jbCell = new javax.swing.JButton();                
-        matrixFloor = new JButton [8][8];
+       jbCell = new JReferencingButton();                
+        matrixFloor = new JReferencingButton[8][8];
         
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                matrixFloor[i][j] = new JButton();
+                matrixFloor[i][j] = new JReferencingButton();
+                ActionListener actionListener = new TestActionListener();
+                matrixFloor[i][j].addActionListener(actionListener);
                 jbCell.add(matrixFloor[i][j]);
                 matrixFloor[i][j].setBorderPainted(false);
                 matrixFloor[i][j].setFocusPainted(false);
@@ -71,53 +76,53 @@ public class Floors extends javax.swing.JFrame{
             }
         }
         
-        Shapes BlackCastle1 = new Castle(true, 0, 0);
+        Shape BlackCastle1 = new Castle(true, 0, 0);
         AddFigure(BlackCastle1);
-        Shapes BlackCastle2 = new Castle(true, 0, 7);
+        Shape BlackCastle2 = new Castle(true, 0, 7);
         AddFigure(BlackCastle2);
         
-        Shapes WhiteCastle1 = new Castle(false, 7, 0);
+        Shape WhiteCastle1 = new Castle(false, 7, 0);
         AddFigure(WhiteCastle1);
-        Shapes WhiteCastle2 = new Castle(false, 7, 7);
+        Shape WhiteCastle2 = new Castle(false, 7, 7);
         AddFigure(WhiteCastle2);
 
-        Shapes BlackKnight1 = new Knight(true, 0, 1);
+        Shape BlackKnight1 = new Knight(true, 0, 1);
         AddFigure(BlackKnight1);
-        Shapes BlackKnight2 = new Knight(true, 0, 6);
+        Shape BlackKnight2 = new Knight(true, 0, 6);
         AddFigure(BlackKnight2);
         
-        Shapes WhiteKnight1 = new Knight(false, 7, 1);
+        Shape WhiteKnight1 = new Knight(false, 7, 1);
         AddFigure(WhiteKnight1);
-        Shapes WhiteKnight2 = new Knight(false, 7, 6);
+        Shape WhiteKnight2 = new Knight(false, 7, 6);
         AddFigure(WhiteKnight2);
         
-        Shapes BlackBishop1 = new Bishop(true, 0, 2);
+        Shape BlackBishop1 = new Bishop(true, 0, 2);
         AddFigure(BlackBishop1);
-        Shapes BlackBishop2 = new Bishop(true, 0, 5);
+        Shape BlackBishop2 = new Bishop(true, 0, 5);
         AddFigure(BlackBishop2);
         
-        Shapes WhiteBishop1 = new Bishop(false, 7, 2);
+        Shape WhiteBishop1 = new Bishop(false, 7, 2);
         AddFigure(WhiteBishop1);
-        Shapes WhiteBishop2 = new Bishop(false, 7, 5);
+        Shape WhiteBishop2 = new Bishop(false, 7, 5);
         AddFigure(WhiteBishop2);
         
-        Shapes BlackKing = new King(true, 0, 4);
+        Shape BlackKing = new King(true, 0, 4);
         AddFigure(BlackKing);
-        Shapes WhiteKing = new King(false, 7, 4);
+        Shape WhiteKing = new King(false, 7, 4);
         AddFigure(WhiteKing);
         
-        Shapes BlackQueen = new Queen(true, 0, 3);
+        Shape BlackQueen = new Queen(true, 0, 3);
         AddFigure(BlackQueen);
-        Shapes WhiteQueen = new Queen(false, 7, 3);
+        Shape WhiteQueen = new Queen(false, 7, 3);
         AddFigure(WhiteQueen);
         
-        Shapes[] blackPawns = new Shapes[8];
+        Shape[] blackPawns = new Shape[8];
         for(int i = 0; i < 8; i++) {
             blackPawns[i] = new Pawn(true, 1, i);
             AddFigure(blackPawns[i]);
         }
         
-        Shapes[] whitePawns = new Shapes[8];
+        Shape[] whitePawns = new Shape[8];
         for(int i = 0; i < 8; i++) {
             whitePawns[i] = new Pawn(false, 6, i);
             AddFigure(whitePawns[i]);
@@ -129,7 +134,22 @@ public class Floors extends javax.swing.JFrame{
     //    frame.pack();
         frame.setVisible(true);
     }
-        private void AddFigure(Shapes s) {
-        matrixFloor[s.positionX][s.positionY].setIcon(s.img);
+    
+    private void AddFigure(Shape s) {
+        this.matrixFloor[s.positionX][s.positionY].setChessShape(s);
+    }
+        
+    public class TestActionListener implements ActionListener {
+     @Override
+     public void actionPerformed(ActionEvent e) {
+        Object source = e.getSource();
+        for(int i = 0; i < 8; i++){
+            for(int j = 0; j < 8; j++){
+                if(source == matrixFloor[i][j]){
+                    matrixFloor[i][j].setBackground(new java.awt.Color(83,28,41)); //test
+                }
+            }
         }
+    }
+}
 }

@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
  *
  * @author Zver
  */
-public abstract class Shapes extends javax.swing.JFrame {
+public abstract class Shape extends javax.swing.JFrame {
     ImageIcon img;
     boolean isBlack; // 0 - white, 1 - black
     int positionX;

@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
  *
  * @author Zver
  */
-public class Pawn extends Shapes {
+public class Pawn extends Shape {
     private final ImageIcon blackIcon = new ImageIcon("resources/BlackPawn.png");
     private final ImageIcon whiteIcon = new ImageIcon("resources/WhitePawn.png");
 
