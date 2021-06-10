@@ -27,5 +27,5 @@ public abstract class Shape extends javax.swing.JFrame {
         return new int[]{positionX, positionY};
     }
     
-    public void Motion() {}
+    public void Motion(JReferencingButton[][] massb, int x, int y) {}
 }

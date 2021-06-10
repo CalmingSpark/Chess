@@ -65,7 +65,7 @@ public class ChessFrame extends javax.swing.JFrame {
             @Override
             public void run() {
                 try {
-                    new Floors().initUI();
+                    new Floor().initUI();
                 } catch (IOException ex) {
                     Logger.getLogger(ChessFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }

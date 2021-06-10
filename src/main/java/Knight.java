@@ -26,4 +26,43 @@ public class Knight extends Shape {
         this.positionX = positionX;
         this.positionY = positionY;
     }
+    
+    @Override
+    public void Motion(JReferencingButton[][] massb, int x, int y) {
+        
+        boolean c = massb[x][y].shape.isBlack;
+        
+        if ((x - 2) >= 0 && (y + 1) <= 7)
+            if (massb[(x - 2)][(y + 1)].shape == null || massb[(x - 2)][(y + 1)].shape.isBlack != c)
+            massb[(x - 2)][(y + 1)].setFreePosition();
+        
+
+        if ((x - 1) >= 0 && (y + 2) <= 7)
+            if (massb[(x - 1)][(y + 2)].shape == null || massb[(x - 1)][(y + 2)].shape.isBlack != c)
+            massb[(x - 1)][(y + 2)].setFreePosition();
+    
+        if ((x + 1) <= 7 && (y - 2) >= 0)
+            if (massb[(x + 1)][(y - 2)].shape == null || massb[(x + 1)][(y - 2)].shape.isBlack != c)
+            massb[(x + 1)][(y - 2)].setFreePosition();
+        
+        if ((x + 1) <= 7 && (y + 2) <= 7)
+            if (massb[(x + 1)][(y + 2)].shape == null || massb[(x + 1)][(y + 2)].shape.isBlack != c)
+            massb[(x + 1)][(y + 2)].setFreePosition();
+        
+        if ((x + 2) <= 7 && (y + 1) <= 7)
+            if (massb[(x + 2)][(y + 1)].shape == null || massb[(x + 2)][(y + 1)].shape.isBlack != c)
+            massb[(x + 2)][(y + 1)].setFreePosition();
+        
+        if ((x + 2) <= 7 && (y - 1) >= 0)
+            if (massb[(x + 2)][(y - 1)].shape == null || massb[(x + 2)][(y - 1)].shape.isBlack != c)
+            massb[(x + 2)][(y - 1)].setFreePosition();
+        
+        if ((x - 1) >= 0 && (y - 2) >= 0)
+            if (massb[(x - 1)][(y - 2)].shape == null || massb[(x - 1)][(y - 2)].shape.isBlack != c)
+            massb[(x - 1)][(y - 2)].setFreePosition();
+        
+        if ((x - 2) >= 0 && (y - 1) >= 0)
+            if (massb[(x - 2)][(y - 1)].shape == null || massb[(x - 2)][(y - 1)].shape.isBlack != c)
+            massb[(x - 2)][(y - 1)].setFreePosition();
+    }
 }

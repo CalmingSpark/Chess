@@ -1,9 +1,9 @@
 JReferencingButton.class
 Queen.class
 Bishop.class
+Floor$TestActionListener.class
 ChessFrame.class
-Floors.class
-Floors$TestActionListener.class
+Floor.class
 King.class
 Shape.class
 Castle.class
