@@ -84,7 +84,7 @@ public class Floor extends javax.swing.JFrame{
     }
 
     private void CreateFigure() {
-        Shape BlackCastle1 = new Castle(true, 0, 0); //0,0
+        Shape BlackCastle1 = new Castle(true, 0, 0);
         AddFigure(BlackCastle1);
         Shape BlackCastle2 = new Castle(true, 0, 7);
         AddFigure(BlackCastle2);
@@ -149,9 +149,12 @@ public class Floor extends javax.swing.JFrame{
             for(int j = 0; j < 8; j++){
                 if(source == matrixFloor[i][j]){
                     if(tempbtn == null) {
-                        tempbtn = matrixFloor[i][j];
-                        Shape s = matrixFloor[i][j].getChessShape();
-                        s.Motion(matrixFloor, i, j);
+                        if (matrixFloor[i][j].shape == null) break;
+                        else {
+                            tempbtn = matrixFloor[i][j];
+                            Shape s = matrixFloor[i][j].getChessShape();
+                            s.Motion(matrixFloor, i, j);
+                        }
                     }
                     else {
                         if (matrixFloor[i][j].isFree) {
@@ -166,6 +169,10 @@ public class Floor extends javax.swing.JFrame{
                         }
                         DelFreeButt();
                         tempbtn = null;
+                        }
+                        if (tempbtn == matrixFloor[i][j]) {
+                            DelFreeButt();
+                            tempbtn = null;
                         }
                     }
                 }

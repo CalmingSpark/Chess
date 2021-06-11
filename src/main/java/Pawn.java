@@ -27,4 +27,44 @@ public class Pawn extends Shape {
         this.positionY = positionY;
     }
     
-}
+    @Override
+    public void Motion(JReferencingButton[][] massb, int x, int y) {
+        
+        boolean c = massb[x][y].shape.isBlack;
+        if (c) {
+            if (massb[x + 1][y - 1].shape != null && !massb[x + 1][y - 1].shape.isBlack) 
+                massb[x + 1][y - 1].setFreePosition((x + 1),(y - 1));
+            if (massb[x + 1][y + 1].shape != null && !massb[x + 1][y + 1].shape.isBlack) 
+                massb[x + 1][y + 1].setFreePosition((x + 1),(y + 1));
+            if (x == 1) {
+                for (int i = 2; i < 4; i++) {
+                    if (massb[i][y].shape == null)
+                        massb[i][y].setFreePosition(i, y);
+                    else break;
+                }
+            }
+            if (x != 1) {
+                if (massb[(x + 1)][y].shape == null)
+                massb[(x + 1)][y].setFreePosition((x + 1),y);
+            }
+        }
+        else {
+            if (massb[x - 1][y - 1].shape != null && massb[x - 1][y - 1].shape.isBlack) 
+                massb[x - 1][y - 1].setFreePosition((x - 1),(y - 1));
+            if (massb[x - 1][y + 1].shape != null && massb[x - 1][y + 1].shape.isBlack) 
+                massb[x - 1][y + 1].setFreePosition((x - 1),(y + 1));
+            if (x == 6) {
+                for (int i = 5; i > 3; i--) {
+                    if (massb[i][y].shape == null)
+                        massb[i][y].setFreePosition(i, y);
+                    else break;
+                    }
+                }              
+            if (x != 6) {
+                if (massb[(x - 1)][y].shape == null)
+                massb[(x - 1)][y].setFreePosition((x - 1),y);
+            }
+        }
+    }
+}    
+    

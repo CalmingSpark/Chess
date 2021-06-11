@@ -27,4 +27,13 @@ public class Queen extends Shape {
         this.positionY = positionY;
     }
     
+    @Override
+    public void Motion(JReferencingButton[][] massb, int x, int y) {
+        Castle cstl = new Castle(false, 0, 0);
+        cstl.Motion(massb, x, y);
+        
+        Bishop bshp = new Bishop(false, 0, 0);
+        bshp.Motion(massb, x, y);
+    }
+    
 }

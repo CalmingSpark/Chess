@@ -27,4 +27,41 @@ public class King extends Shape {
         this.positionY = positionY;
     }
     
+    @Override
+    public void Motion(JReferencingButton[][] massb, int x, int y) {
+        boolean c = massb[x][y].shape.isBlack;
+        
+        if ((x + 1) < 8 && (y + 1) < 8)
+            if (massb[(x + 1)][(y + 1)].shape == null || massb[(x + 1)][(y + 1)].shape.isBlack != c)
+            massb[(x + 1)][(y + 1)].setFreePosition((x + 1),(y + 1));
+        
+        if ((x - 1) >= 0 && (y - 1) >= 0)
+            if (massb[(x - 1)][(y - 1)].shape == null || massb[(x - 1)][(y - 1)].shape.isBlack != c)
+            massb[(x - 1)][(y - 1)].setFreePosition((x - 1),(y - 1));
+        
+        if ((x + 1) < 8 && (y - 1) >= 0)
+            if (massb[(x + 1)][(y - 1)].shape == null || massb[(x + 1)][(y - 1)].shape.isBlack != c)
+            massb[(x + 1)][(y - 1)].setFreePosition((x + 1),(y - 1));
+
+        if ((x - 1) >= 0 && (y + 1) < 8)
+            if (massb[(x - 1)][(y + 1)].shape == null || massb[(x - 1)][(y + 1)].shape.isBlack != c)
+            massb[(x - 1)][(y + 1)].setFreePosition((x - 1),(y + 1));     
+        
+        if ((x + 1) < 8 && y >= 0 && y < 8)
+            if (massb[(x + 1)][y].shape == null || massb[(x + 1)][y].shape.isBlack != c)
+            massb[(x + 1)][y].setFreePosition((x + 1),y);     
+        
+        if ((x - 1) >= 0 && y >= 0 && y < 8)
+            if (massb[(x - 1)][y].shape == null || massb[(x - 1)][y].shape.isBlack != c)
+            massb[(x - 1)][y].setFreePosition((x - 1),y);        
+        
+        if ((y + 1) < 8 && x >= 0 && x < 8)
+            if (massb[x][(y + 1)].shape == null || massb[x][(y + 1)].shape.isBlack != c)
+            massb[x][(y + 1)].setFreePosition(x,(y + 1));     
+        
+        if ((y - 1) >= 0 && x >= 0 && x < 8)
+            if (massb[x][(y - 1)].shape == null || massb[x][(y - 1)].shape.isBlack != c)
+            massb[x][(y - 1)].setFreePosition(x,(y - 1)); 
+    }
+    
 }
