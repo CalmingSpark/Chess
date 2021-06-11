@@ -84,7 +84,7 @@ public class Floor extends javax.swing.JFrame{
     }
 
     private void CreateFigure() {
-        Shape BlackCastle1 = new Castle(true, 0, 0);
+        Shape BlackCastle1 = new Castle(true, 0, 0); //0,0
         AddFigure(BlackCastle1);
         Shape BlackCastle2 = new Castle(true, 0, 7);
         AddFigure(BlackCastle2);
@@ -94,7 +94,7 @@ public class Floor extends javax.swing.JFrame{
         Shape WhiteCastle2 = new Castle(false, 7, 7);
         AddFigure(WhiteCastle2);
 
-        Shape BlackKnight1 = new Knight(true, 0, 1); //0,1
+        Shape BlackKnight1 = new Knight(true, 0, 1);
         AddFigure(BlackKnight1);
         Shape BlackKnight2 = new Knight(true, 0, 6);
         AddFigure(BlackKnight2);
@@ -123,7 +123,7 @@ public class Floor extends javax.swing.JFrame{
         AddFigure(BlackQueen);
         Shape WhiteQueen = new Queen(false, 7, 3);
         AddFigure(WhiteQueen);
-        
+
         Shape[] blackPawns = new Shape[8];
         for(int i = 0; i < 8; i++) {
             blackPawns[i] = new Pawn(true, 1, i);

@@ -37,8 +37,13 @@ public class JReferencingButton<T> extends JButton {
         setIcon(null);
     }
     
-    public void setFreePosition() {
-        setBackground(new java.awt.Color(167,255,217));
+    public void setFreePosition(int x, int y) {
+        if ((x + y)%2 == 0) {
+            setBackground(new java.awt.Color(201,255,231));
+        }
+        else { 
+            setBackground(new java.awt.Color(111,255,191));
+        }
         isFree = true;
     }
     
