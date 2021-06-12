@@ -18,11 +18,21 @@ public class JReferencingButton<T> extends JButton {
     boolean isFree;
     Shape shape;
 
-    public JReferencingButton() {
+    public JReferencingButton(int positionX,int positionY) {
         this.isFree = false;
         this.shape = null;
+        this.positionX = positionX;
+        this.positionY = positionY;
     }
-
+    
+    public int getPositionX() {
+        return positionX;
+    }
+    
+    public int getPositionY() {
+        return positionY;
+    }
+    
     public void setChessShape(Shape shape) {
         this.shape = shape;
         setIcon(shape.img);

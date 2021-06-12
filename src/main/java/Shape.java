@@ -28,4 +28,8 @@ public abstract class Shape extends javax.swing.JFrame {
     }
     
     public void Motion(JReferencingButton[][] massb, int x, int y) {}
+    
+    public String GetName(){
+        return null;
+    }
 }

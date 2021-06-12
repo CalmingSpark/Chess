@@ -2,6 +2,7 @@
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -23,10 +24,12 @@ import javax.swing.JLabel;
  */
 
 public class Floor extends javax.swing.JFrame{
+
     JPanel jpCell = new JPanel();
     GridLayout layout = new GridLayout(8, 8, 0, 0);
     private JReferencingButton[][] matrixFloor;
     private JReferencingButton jbCell, tempbtn;
+    private int numberMotion = 1;
     private JLabel leftSide, rightSide, topSide, bottomSide;
     
     void initUI() throws IOException {
@@ -51,13 +54,13 @@ public class Floor extends javax.swing.JFrame{
         frame.add(bottomSide, BorderLayout.SOUTH);
         
         jpCell.setLayout(layout);
-                
-        jbCell = new JReferencingButton();                
+                               
         matrixFloor = new JReferencingButton[8][8];
         
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                matrixFloor[i][j] = new JReferencingButton();
+                jbCell = new JReferencingButton(i, j); 
+                matrixFloor[i][j] = new JReferencingButton(i, j);
                 ActionListener actionListener = new TestActionListener();
                 matrixFloor[i][j].addActionListener(actionListener);
                 jbCell.add(matrixFloor[i][j]);
@@ -126,7 +129,7 @@ public class Floor extends javax.swing.JFrame{
 
         Shape[] blackPawns = new Shape[8];
         for(int i = 0; i < 8; i++) {
-            blackPawns[i] = new Pawn(true, 1, i);
+            blackPawns[i] = new Pawn(true, 1, i); 
             AddFigure(blackPawns[i]);
         }
         
@@ -144,48 +147,53 @@ public class Floor extends javax.swing.JFrame{
     public class TestActionListener implements ActionListener {
      @Override
      public void actionPerformed(ActionEvent e) {
-        Object source = e.getSource();
-        for(int i = 0; i < 8; i++){
-            for(int j = 0; j < 8; j++){
-                if(source == matrixFloor[i][j]){
-                    if(tempbtn == null) {
-                        if (matrixFloor[i][j].shape == null) break;
-                        else {
-                            tempbtn = matrixFloor[i][j];
-                            Shape s = matrixFloor[i][j].getChessShape();
-                            s.Motion(matrixFloor, i, j);
-                        }
-                    }
-                    else {
-                        if (matrixFloor[i][j].isFree) {
-                        Shape s = tempbtn.getChessShape();
-                        matrixFloor[i][j].setChessShape(s);
-                        for(int x = 0; x < 8; x++){
-                            for(int y = 0; y < 8; y++){
-                                if (tempbtn == matrixFloor[x][y]) {
-                                    matrixFloor[x][y].delChessShape();
-                                }
-                            }
-                        }
-                        DelFreeButt();
-                        tempbtn = null;
-                        }
-                        if (tempbtn == matrixFloor[i][j]) {
-                            DelFreeButt();
-                            tempbtn = null;
-                        }
-                    }
+        JReferencingButton jrButton = (JReferencingButton) e.getSource();
+        int x = jrButton.getPositionX();
+        int y = jrButton.getPositionY();
+        if(tempbtn == null) {
+            if (matrixFloor[x][y].shape == null) return;
+            else {
+                Shape s = matrixFloor[x][y].getChessShape();
+                if ((numberMotion % 2 == 0 && s.isBlack) ||
+                    (numberMotion % 2 != 0 && !s.isBlack)) { 
+                    tempbtn = matrixFloor[x][y];
+                    s.Motion(matrixFloor, x, y);
                 }
+                else return;
             }
         }
+        else {
+            if (matrixFloor[x][y].isFree) {
+                Shape s = tempbtn.getChessShape();
+                    matrixFloor[x][y].setChessShape(s);
+                    for(int i = 0; i < 8; i++){
+                        for(int j = 0; j < 8; j++){
+                            if (tempbtn == matrixFloor[i][j]) {
+                                matrixFloor[i][j].delChessShape();
+                                numberMotion += 1;
+                            }
+                        }
+                    }
+                    DelAllFreePos();
+                    tempbtn = null;
+                if (s.GetName() == "Pawn" && ((s.isBlack && x == 7) || (!s.isBlack && x == 0))) {
+                    s.Motion(matrixFloor, x, y);
+                }
+            }
+            else {
+                DelAllFreePos();
+                tempbtn = null;
+                }
+        }
     }
-    private void DelFreeButt() {
+
+    private void DelAllFreePos() {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 matrixFloor[i][j].delFreePosition(i, j);
-                }
             }
         }
     }     
+    }
 }
     
