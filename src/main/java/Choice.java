@@ -48,6 +48,7 @@ public class Choice extends javax.swing.JFrame {
             jrbListChoice[i].setBorderPainted(false);
             jrbListChoice[i].setFocusPainted(false);
             jrbListChoice[i].setText(null);
+            jrbListChoice[i].setBackground(new java.awt.Color(149,242,211));
             jpChoice.add(jrbListChoice[i]); 
         }
         
@@ -83,7 +84,7 @@ public class Choice extends javax.swing.JFrame {
         int locationX = (screenSize.width - 350) / 2;
         int locationY = (screenSize.height - 150) / 2;
         form2.setBounds(locationX, locationY, 350, 150);
-        form2.setBackground(new java.awt.Color(157,67,188));
+        form2.setBackground(new java.awt.Color(149,242,211));
         form2.setVisible(true);
     }
     

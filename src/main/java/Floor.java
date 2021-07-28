@@ -2,7 +2,6 @@
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -176,7 +175,7 @@ public class Floor extends javax.swing.JFrame{
                     }
                     DelAllFreePos();
                     tempbtn = null;
-                if (s.GetName() == "Pawn" && ((s.isBlack && x == 7) || (!s.isBlack && x == 0))) {
+                if ("Pawn".equals(s.GetName()) && ((s.isBlack && x == 7) || (!s.isBlack && x == 0))) {
                     s.Motion(matrixFloor, x, y);
                 }
             }
